@@ -605,6 +605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bow
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0bfc680bef7004840a691fe9aa55ecde, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2931736421633275198, guid: 0bfc680bef7004840a691fe9aa55ecde, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -853,6 +857,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 1018673734}
   body: {fileID: 1837022302}
+  animator: {fileID: 1064427189}
+  rig: {fileID: 1250871500}
   inputComponent: {fileID: 1018673738}
   playerGroundTrigger: {fileID: 530306495}
   characterModel: {fileID: 11400000, guid: ea2561499ae140f468c3e0857945f315, type: 2}
@@ -2604,7 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Effectors: []
 --- !u!114 &1250871501
 MonoBehaviour:

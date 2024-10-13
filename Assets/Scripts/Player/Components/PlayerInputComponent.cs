@@ -31,5 +31,8 @@ namespace WavesOfChaos.Player.Components
         public bool GetPlayerCrouch() => _playerInput.Player.Crouch.IsPressed();
 
         public bool GetPlayerSprint() => _playerInput.Player.Sprint.IsPressed();
+
+        public bool GetPlayerAttackStarted() => _playerInput.Player.Attack.IsPressed();
+        public bool GetPlayerAttackFinished() => _playerInput.Player.Attack.WasReleasedThisFrame();
     }
 }

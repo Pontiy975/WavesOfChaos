@@ -18,7 +18,7 @@ namespace WavesOfChaos.Player.StateMachine.States
         private readonly CharacterController _characterController;
         private readonly Transform _body;
         
-        private readonly PlayerInputComponent _playerInputComponent;
+        protected readonly PlayerInputComponent playerInputComponent;
         private readonly PlayerGroundTrigger _playerGroundTrigger;
         private readonly PlayerMovementParams _playerMovementParams;
 
@@ -32,7 +32,7 @@ namespace WavesOfChaos.Player.StateMachine.States
             _characterModel = characterModel;
             _gameSettings = gameSettings;
             
-            _playerInputComponent = playerInputComponent;
+            this.playerInputComponent = playerInputComponent;
             _playerMovementParams = playerMovementParams;
             _playerGroundTrigger = playerGroundTrigger;
         }
@@ -41,13 +41,13 @@ namespace WavesOfChaos.Player.StateMachine.States
         {
             while (true)
             {
-                Control();
+                DoLogic();
 
                 yield return null;
             }
         }
 
-        private void Control()
+        protected virtual void DoLogic()
         {
             Movement();
             Rotatiton();
@@ -57,9 +57,9 @@ namespace WavesOfChaos.Player.StateMachine.States
 
         private void Movement()
         {
-            _playerMovementParams.isInSprint = _playerInputComponent.GetPlayerSprint();
+            _playerMovementParams.isInSprint = playerInputComponent.GetPlayerSprint();
 
-            Vector2 inputVector = _playerInputComponent.GetPlayerMovement();
+            Vector2 inputVector = playerInputComponent.GetPlayerMovement();
             Vector3 movementVector = new Vector3(inputVector.x, 0f, inputVector.y);
 
             movementVector = _characterController.transform.TransformDirection(movementVector);
@@ -71,8 +71,8 @@ namespace WavesOfChaos.Player.StateMachine.States
 
         private void Rotatiton()
         {
-            _playerMovementParams.turn.x += CalculateAxisValue(_playerInputComponent.GetMouseDelta().x);    
-            _playerMovementParams.turn.y += CalculateAxisValue(_playerInputComponent.GetMouseDelta().y);
+            _playerMovementParams.turn.x += CalculateAxisValue(playerInputComponent.GetMouseDelta().x);    
+            _playerMovementParams.turn.y += CalculateAxisValue(playerInputComponent.GetMouseDelta().y);
             _playerMovementParams.turn.y = Mathf.Clamp(_playerMovementParams.turn.y, -60f, 45f);
 
             _body.localRotation = Quaternion.Euler(-_playerMovementParams.turn.y, 0f, 0f);
@@ -84,7 +84,7 @@ namespace WavesOfChaos.Player.StateMachine.States
             if (_playerGroundTrigger.IsGrounded && _playerMovementParams.velocity.y < 0f)
                 _playerMovementParams.velocity.y = 0f;
 
-            if (_playerInputComponent.GetPlayerJump() && _playerGroundTrigger.IsGrounded)
+            if (playerInputComponent.GetPlayerJump() && _playerGroundTrigger.IsGrounded)
                 _playerMovementParams.velocity.y += Mathf.Sqrt(_characterModel.JumpHeight * -3f * _gameSettings.Gravity);
 
             _playerMovementParams.velocity.y += _gameSettings.Gravity * Time.deltaTime;
@@ -93,7 +93,7 @@ namespace WavesOfChaos.Player.StateMachine.States
 
         private void Crouch()
         {
-            _playerMovementParams.isCrouching = _playerInputComponent.GetPlayerCrouch();
+            _playerMovementParams.isCrouching = playerInputComponent.GetPlayerCrouch();
 
             _characterController.height = _playerMovementParams.isCrouching 
                                           ? _characterModel.CrouchedHeight 

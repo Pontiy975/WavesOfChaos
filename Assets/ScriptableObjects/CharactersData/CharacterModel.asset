@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: CharacterModel
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 5
+  <SprintSpeed>k__BackingField: 10
   <JumpHeight>k__BackingField: 1
   <StandingHeight>k__BackingField: 2
   <CrouchedHeight>k__BackingField: 0.25
+  <CrouchedSpeed>k__BackingField: 2

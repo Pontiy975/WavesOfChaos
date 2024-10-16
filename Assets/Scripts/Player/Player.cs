@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using WavesOfChaos.Player.Components;
 using WavesOfChaos.Player.Data;
 using WavesOfChaos.Player.StateMachine;
@@ -13,7 +12,7 @@ namespace WavesOfChaos.Player
         [SerializeField] private CharacterController characterController;
         [SerializeField] private Transform body;
         [SerializeField] private Animator animator;
-        [SerializeField] private Rig rig;
+        [SerializeField] private Weapon.Weapon weapon;
         
         [SerializeField] private PlayerInputComponent inputComponent;
         [SerializeField] private PlayerGroundTrigger playerGroundTrigger;
@@ -28,7 +27,7 @@ namespace WavesOfChaos.Player
         {
             _playerStateMachine = new PlayerStateMachine(characterController, body, characterModel, inputComponent,
                                                          gameSettings, _playerMovementParams, playerGroundTrigger,
-                                                         animator, rig);
+                                                         animator, weapon);
 
             StartCoroutine(_playerStateMachine.Execute().GetEnumerator());
         }

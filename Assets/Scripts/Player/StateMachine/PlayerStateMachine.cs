@@ -3,8 +3,8 @@ using WavesOfChaos.Player.Data;
 using WavesOfChaos.Player.Components;
 using WavesOfChaos.Player.StateMachine.States;
 using WavesOfChaos.Settings;
-using UnityEngine.Animations.Rigging;
 using StateMachine;
+using WavesOfChaos.Weapon;
 
 namespace WavesOfChaos.Player.StateMachine
 {
@@ -13,7 +13,7 @@ namespace WavesOfChaos.Player.StateMachine
         public PlayerStateMachine(CharacterController characterController, Transform body, CharacterModel characterModel,
                                   PlayerInputComponent inputComponent, GameSettings gameSettings,
                                   PlayerMovementParams playerMovementParams, PlayerGroundTrigger playerGroundTrigger,
-                                  Animator playerAnimator, Rig rig)
+                                  Animator playerAnimator, IWeapon weapon)
         {
             States = new()
             {
@@ -21,7 +21,7 @@ namespace WavesOfChaos.Player.StateMachine
                                                                  gameSettings, playerMovementParams, playerGroundTrigger) },
                 { typeof(AttackState), new AttackState(characterController, body, characterModel, inputComponent,
                                                        gameSettings, playerMovementParams, playerGroundTrigger,
-                                                       playerAnimator, rig) }
+                                                       playerAnimator, weapon) }
             };
 
             State = States[typeof(PlayerSuperState)];

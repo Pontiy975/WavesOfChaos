@@ -44,5 +44,12 @@ namespace Projectiles
             yield return new WaitForSeconds(returnToPoolDelay);
             projectilesPool.ReturnToPool(this);
         }
+
+        public override void OnSpawn()
+        {
+            base.OnSpawn();
+            _isFinished = false;
+            rb.isKinematic = true;
+        }
     }
 }

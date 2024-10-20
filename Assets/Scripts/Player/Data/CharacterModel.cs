@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace WavesOfChaos.Player.Data
 {
-    [CreateAssetMenu(fileName = "CharacterModel", menuName = "Scriptable Objects/Characters Data/CharacterModel")]
+    [CreateAssetMenu(fileName = "CharacterModel", menuName = "Scriptable Objects/Characters Data/Character Model")]
     public class CharacterModel : ScriptableObject
     {
         [field: Header("Movement settings")]

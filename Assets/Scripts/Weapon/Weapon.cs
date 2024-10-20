@@ -6,5 +6,6 @@ namespace WavesOfChaos.Weapon
     {
         public abstract void EnableRig();
         public abstract void DisableRig();
+        public abstract void Attack();
     }
 }

@@ -11,7 +11,7 @@ namespace WavesOfChaos.Player.StateMachine.States
         private readonly Animator _playerAnimator;
         private readonly IWeapon _weapon;
 
-        private readonly static int _inAttackStateHash = Animator.StringToHash("InAttackState");
+        private readonly static int _inAttackStateHash = Animator.StringToHash("Aiming");
 
         public AttackState(CharacterController characterController, Transform body, CharacterModel characterModel,
                            PlayerInputComponent playerInputComponent, GameSettings gameSettings,
@@ -30,13 +30,11 @@ namespace WavesOfChaos.Player.StateMachine.States
 
             if (playerInputComponent.GetPlayerAttackStarted())
             {
-                Debug.Log("Attack started");
                 _playerAnimator.SetBool(_inAttackStateHash, true);
                 _weapon.EnableRig();
             }
             else if (playerInputComponent.GetPlayerAttackFinished())
             {
-                Debug.Log("Attack ended");
                 _playerAnimator.SetBool(_inAttackStateHash, false);
                 _weapon.DisableRig();
             }

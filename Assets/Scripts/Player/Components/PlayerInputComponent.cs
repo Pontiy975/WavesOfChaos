@@ -9,6 +9,10 @@ namespace WavesOfChaos.Player.Components
         private void Awake()
         {
             _playerInput = new PlayerInput();
+        }
+
+        private void Start()
+        {
             Cursor.lockState = CursorLockMode.Locked;
         }
 
